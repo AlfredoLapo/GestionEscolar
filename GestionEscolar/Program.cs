@@ -1,4 +1,9 @@
+using GestionEscolar.Data;
+using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("GestionEscolarContext") ?? throw new InvalidOperationException("Connection string 'GestionEscolarContext' not found.");
+
+builder.Services.AddDbContext<GestionEscolarContext>(options => options.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
