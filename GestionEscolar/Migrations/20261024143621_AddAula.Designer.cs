@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GestionEscolar.Migrations
 {
     [DbContext(typeof(GestionEscolarContext))]
-    [Migration("20261023154833_AddAula")]
+    [Migration("20261024143621_AddAula")]
     partial class AddAula
     {
         /// <inheritdoc />
@@ -79,6 +79,30 @@ namespace GestionEscolar.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Estudiante");
+                });
+
+            modelBuilder.Entity("GestionEscolar.Models.Libro", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AnioPublicacion")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Autor")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titulo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Libro");
                 });
 
             modelBuilder.Entity("GestionEscolar.Models.Maestro", b =>
